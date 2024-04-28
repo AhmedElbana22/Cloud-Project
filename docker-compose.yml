@@ -1,0 +1,22 @@
+# docker-compose.yml
+
+version: '3'
+
+services:
+  web:
+    build: .
+    ports:
+      - "5000:5000"
+    environment:
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=123
+      - MYSQL_DATABASE=team  # Update to 'team' database
+      - MYSQL_HOST=db
+    depends_on:
+      - db
+
+  db:
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: 123
+      MYSQL_DATABASE: team  # Update to 'team' database
